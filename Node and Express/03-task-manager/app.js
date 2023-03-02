@@ -1,10 +1,18 @@
+require("./db/connect");
 const express = require("express");
+const tasks = require("./routes/tasks");
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Welcome");
+// middleware
+app.use(express.json());
+
+// routes
+app.get("/hello", (req, res) => {
+  res.send("Task Manager App");
 });
 
-app.listen(5000, (req, res) => {
-  console.log("listening on port");
-});
+app.use("/api/v1/tasks", tasks);
+
+const port = 3000;
+
+app.listen(port, console.log(`Server is listening on ${port}...`));
