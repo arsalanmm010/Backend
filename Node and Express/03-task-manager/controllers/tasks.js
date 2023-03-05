@@ -1,27 +1,30 @@
+const Task = require("../models/tasks");
+
 const getAllTasks = (req, res) => {
-  res.send("Get all tasks!!");
+  res.send("All Items");
 };
 
-const createTask = (req, res) => {
-  res.json(req.body);
+const createTask = async (req, res) => {
+  const task = await Task.create(req.body);
+  res.status(201).json({ task });
 };
 
-const getTask = (req, res) => {
-  res.json({ id: req.params.id });
+const getSingleTask = (req, res) => {
+  res.send("Task By ID");
 };
 
 const updateTask = (req, res) => {
-  res.send("Update task");
+  res.send(req.body);
 };
 
 const deleteTask = (req, res) => {
-  res.send("Delete task");
+  res.send("Delete Items");
 };
 
 module.exports = {
   getAllTasks,
   createTask,
-  getTask,
+  getSingleTask,
   updateTask,
   deleteTask,
 };
